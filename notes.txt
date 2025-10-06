@@ -1,0 +1,23 @@
+Javascript is Server (after addition of ) + Client side language
+Primarily Client Side language
+OOP , Scripting language
+Single Threaded , Client side Scripting language
+variables, datatypes , operators , loops , functions , OOP , File handling , Exception Handling , Use cases
+
+Features of ES-6
+1) let and const keywords
+2) Template literals
+3) Arrow Functions
+
+
+
+
+Global and Block scope variables
+Hoisting - All variables go at the top and become undefined (initially) , which lead to the invention of Global scope variable = var
+
+Conflict resolution of global scope variables done by Block scope variables
+
+If a same variable is inside the function block , the variable again becomes undefined and the value within the function gets assigned to the variable (ASSUME IT LIKE GENETIC PROPERTIES PASSED ON FROM PARENTS TO CHILDREN , NEVER THE REVERSE)
+
+Lexical environment
+Closures in JS
