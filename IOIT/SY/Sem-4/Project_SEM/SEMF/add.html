@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe App</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            padding: 20px;
+        }
+
+        /* Add Recipe Button Styles */
+        .add-recipe-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .add-recipe-btn:hover {
+            transform: scale(1.1);
+            background-color: #ff5252;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 150;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 50px auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #555;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .img-preview {
+            margin-top: 10px;
+            max-width: 100%;
+            max-height: 200px;
+            display: none;
+        }
+
+        .submit-btn {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <!-- Add Recipe Button -->
+    <button class="add-recipe-btn" id="addRecipeBtn">+</button>
+
+    <!-- Modal Form -->
+    <div class="modal" id="recipeModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <h2>Add New Recipe</h2>
+            <form id="recipeForm">
+                <div class="form-group">
+                    <label for="recipeName">Recipe Name:</label>
+                    <input type="text" id="recipeName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="recipeDescription">Description:</label>
+                    <textarea id="recipeDescription" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="recipeIngredients">Ingredients:</label>
+                    <textarea id="recipeIngredients" placeholder="One ingredient per line" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="recipeInstructions">Instructions:</label>
+                    <textarea id="recipeInstructions" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="recipePrecautions">Precautions:</label>
+                    <textarea id="recipePrecautions" placeholder="List any allergy information, handling precautions, etc."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="recipeImage">Recipe Image:</label>
+                    <input type="file" id="recipeImage" accept="image/*">
+                    <img id="imagePreview" class="img-preview" alt="Recipe preview">
+                </div>
+
+                <button type="submit" class="submit-btn">Add Recipe</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // DOM elements
+        const addBtn = document.getElementById('addRecipeBtn');
+        const modal = document.getElementById('recipeModal');
+        const closeModal = document.getElementById('closeModal');
+        const recipeForm = document.getElementById('recipeForm');
+        const imageInput = document.getElementById('recipeImage');
+        const imagePreview = document.getElementById('imagePreview');
+
+        // Open modal when add button is clicked
+        addBtn.addEventListener('click', () => {
+            modal.style.display = 'block';
+        });
+
+        // Close modal when X is clicked
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+            recipeForm.reset();
+            imagePreview.style.display = 'none';
+        });
+
+        // Close modal when clicking outside of it
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                recipeForm.reset();
+                imagePreview.style.display = 'none';
+            }
+        });
+
+        // Show image preview
+        imageInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Form submission
+        recipeForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Collect form data
+            const recipeData = {
+                name: document.getElementById('recipeName').value,
+                description: document.getElementById('recipeDescription').value,
+                ingredients: document.getElementById('recipeIngredients').value,
+                instructions: document.getElementById('recipeInstructions').value,
+                precautions: document.getElementById('recipePrecautions').value,
+                image: imagePreview.src || null
+            };
+            
+            // Here you would typically send this data to a server or save it locally
+            console.log('Recipe data:', recipeData);
+            
+            // For demonstration, alert the user
+            alert('Recipe added successfully!');
+            
+            // Close the modal and reset the form
+            modal.style.display = 'none';
+            recipeForm.reset();
+            imagePreview.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
