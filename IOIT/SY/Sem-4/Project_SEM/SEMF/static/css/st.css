@@ -1,0 +1,637 @@
+
+        :root {
+            --primary-color: #ff6b6b;
+            --secondary-color: #4ecdc4;
+            --accent-color: #ffe66d;
+            --dark-color: #2d3436;
+            --light-color: #f9f9f9;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+/* Base style for all standard buttons and links with the 'btn' class */
+.btn,
+.login-signup-container button[type="submit"] {
+    display: inline-flex; /* Use flex for easy icon alignment */
+    align-items: center;
+    justify-content: center;
+    padding: 12px 25px;
+    margin: 10px;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: white;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effect */
+.btn:hover,
+.login-signup-container button[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue */
+    transform: translateY(-2px); /* Slight lift */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Icon spacing */
+.btn i,
+.login-signup-container button i {
+    margin-right: 8px;
+}
+
+/* Login Button (using secondary color defined in HTML style attribute) */
+#loginBtn {
+    background-color: var(--secondary-color) !important;
+}
+
+#loginBtn:hover {
+    background-color: #1e7e34 !important; /* Darker green */
+}
+
+/* Small button used in recipe cards */
+.btn-small {
+    display: inline-block;
+    padding: 5px 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 4px;
+    background-color: #6c757d; /* A neutral gray */
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.btn-small:hover {
+    background-color: #5a6268;
+}
+
+/* Logout Button in Footer (using danger color for attention) */
+.logout-btn-div a#logoutBtn {
+    background-color: var(--danger-color);
+    color: white;
+    padding: 8px 15px;
+    font-size: 1rem;
+    margin: 0; /* Override generic margin */
+}
+
+.logout-btn-div a#logoutBtn:hover {
+    background-color: #c82333;
+}
+
+/* Home Page Button Alignment (for the div containing the two buttons) */
+.login-signup-container > div {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    justify-content: center; /* Centers buttons horizontally */
+    margin-top: 20px;
+}
+
+/* Pulsing effect for the main signup/submit buttons */
+.pulse-animation {
+    /* Initial state, ready for animation */
+    box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.4); 
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.4);
+    }
+    70% {
+        /* Expand the shadow effect */
+        box-shadow: 0 0 0 10px rgba(0, 123, 255, 0); 
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+    }
+}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .login-signup-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .login-signup-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .login-signup-container h2 {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        
+        .login-signup-container button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin: 10px 5px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            font-size: 16px;
+        }
+        
+        .login-signup-container button:hover {
+            background-color: #ff5252;
+            transform: scale(1.05);
+        }
+        
+        .login-signup-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .login-signup-container input,
+        .login-signup-container select {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-size: 16px;
+            outline: none;
+            transition: var(--transition);
+        }
+        
+        .login-signup-container input:focus,
+        .login-signup-container select:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 2px rgba(78, 205, 196, 0.2);
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            box-shadow: var(--shadow);
+        }
+        
+        header img {
+            height: 60px;
+            width: auto;
+            margin-right: 15px;
+            transition: var(--transition);
+        }
+        
+        header img:hover {
+            transform: scale(1.1);
+        }
+        
+        header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            flex-grow: 1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+        
+        .meal-filter-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+        
+        .meal-filter {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .meal-filter label {
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+        
+        .meal-filter select {
+            padding: 10px 15px;
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            outline: none;
+            background-color: white;
+            transition: var(--transition);
+            flex: 1;
+        }
+        
+        .meal-filter select:focus {
+            border-color: var(--secondary-color);
+        }
+        
+        .recipe-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .recipe-card {
+            background-color: white;
+            text-decoration-color: #e90707;
+            font-palette: blue;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .recipe-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .recipe-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .recipe-card-content {
+            padding: 20px;
+        }
+        
+        .recipe-card h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .recipe-card p {
+            color: #000000;
+            margin-bottom: 15px;
+        }
+        
+        .recipe-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            border-radius: 20px;
+            font-size: 14px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .recipe-details {
+        display: none;
+        }
+
+        .caution-text {
+        color: red;
+        font-weight: bold;
+        }
+
+        .caution-value {
+        color: red;
+        }
+
+        
+        .feedback-form {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+        
+        .feedback-form h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .feedback-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .feedback-form input,
+        .feedback-form textarea {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+            transition: var(--transition);
+        }
+        
+        .feedback-form input:focus,
+        .feedback-form textarea:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 2px rgba(78, 205, 196, 0.2);
+        }
+        
+        .feedback-form button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            font-size: 16px;
+        }
+        
+        .feedback-form button:hover {
+            background-color: #ff5252;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: auto;
+            width: 100%;
+            /* Remove animations from footer to make it stable */
+            position: relative;
+            bottom: 0;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+        }
+        
+        footer a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        footer a:hover {
+            color: var(--accent-color);
+        }
+        .logout-btn-div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #logoutBtn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: var(--transition);
+        }
+        
+        #logoutBtn:hover {
+            background-color: #ed0202;
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        .float-animation {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px;
+            }
+            
+            header img {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .meal-filter-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .login-signup-container {
+                margin: 30px 15px;
+                padding: 20px;
+            }
+        }
+/* Add Recipe Button Styles */
+.add-recipe-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #03d826;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.add-recipe-btn:hover {
+    transform: scale(1.1);
+    background-color: #ff5252;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 150;
+    overflow-y: auto;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 50px auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #555;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.img-preview {
+    margin-top: 10px;
+    max-width: 100%;
+    max-height: 200px;
+    display: none;
+}
+
+.submit-btn {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #45a049;
+}
+
+.contact-form{
+    border: #2d3436;
+    margin-left: 30%;
+    width: 50%;
+    font-family: Arial, Helvetica, sans-serif;
+    align-items: center;
+    cursor: pointer;
+}
+
+.contact-info{
+    margin-left: 35%;
+    align-items: center;
+    padding: 100px;
+}
+
+.social-links
+{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 30%;
+    width: 50%;
+    align-content: center;
+    padding: 100px;
+}
+
+.flash-messages {
+    list-style: none;
+    padding: 10px;
+    margin: 10px;
+}
+.flash-messages li.success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 5px;
+}
+.flash-messages li.danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 5px;
+}

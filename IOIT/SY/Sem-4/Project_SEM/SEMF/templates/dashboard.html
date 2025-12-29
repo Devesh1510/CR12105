@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Food Portal Admin Dashboard</title>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <link rel="stylesheet" href="/static/st.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+  <!-- AOS Animation library -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    header {
+      background: #333;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .chart-box {
+      background: white;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    canvas {
+      max-width: 600px;
+      margin: 0 auto;
+      display: block;
+      width: 100% !important;
+      height: auto !important;
+      aspect-ratio: 2 / 1;
+    }
+
+    #nutritionChart {
+      max-width: 400px;
+      margin: 0 auto;
+      display: block;
+      aspect-ratio: 1 / 1;
+    }
+
+    /* Adjust position for both buttons */
+    .buttons-container {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      z-index: 10;
+      display: flex;
+      gap: 10px;
+    }
+
+    .toggle, .print-btn {
+      background: #eee;
+      border: none;
+      padding: 8px 14px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .toggle {
+      background: #eee;
+    }
+
+    .print-btn {
+      background: #eee;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid #ccc; /* Ensure borders are applied */
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    td {
+      background-color: #fff;
+    }
+
+    /* Dark Mode Styles */
+    body.dark-mode {
+      background: #121212;
+      color: #eee;
+    }
+
+    body.dark-mode header {
+      background: #1e1e1e;
+    }
+
+    body.dark-mode .chart-box {
+      background: #1f1f1f;
+      color: #eee;
+    }
+
+    body.dark-mode table {
+      border-color: #444; /* Darker borders in dark mode */
+    }
+
+    body.dark-mode th {
+      background-color: #555;
+    }
+
+    body.dark-mode td {
+      background-color: #333;
+    }
+
+    body.dark-mode .toggle, body.dark-mode .print-btn {
+      background: #333;
+      color: #eee;
+    }
+
+    /* For printing mode */
+    @media print {
+      .toggle, .print-btn {
+        display: none;
+    }
+
+    body {
+      background: white;
+      color: black;
+    }
+
+    .chart-box {
+      page-break-inside: avoid;
+      box-shadow: none;
+    }
+  }
+
+  .logout-btn-div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  #logoutBtn {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: var(--transition);
+  }
+  
+  #logoutBtn:hover {
+      background-color: #ed0202;
+      }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Smart Food Portal Admin Dashboard</h1>
+</header>
+
+<!-- Container for both buttons -->
+<div class="buttons-container">
+  <button class="toggle" onclick="toggleMode()">Toggle Mode</button>
+  <button class="print-btn" onclick="window.print()">🖨️ Print Dashboard</button>
+</div>
+
+<div class="container">
+  <div class="chart-box">
+    <h3>User Growth</h3>
+    <canvas id="userChart"></canvas>
+  </div>
+
+  <div class="chart-box">
+    <h3>Recipe Categories</h3>
+    <canvas id="recipeChart"></canvas>
+  </div>
+
+  <div class="chart-box">
+    <h3>Payments Over Time</h3>
+    <canvas id="paymentChart"></canvas>
+  </div>
+
+  <div class="chart-box">
+    <h3>Nutritionist Engagement</h3>
+    <canvas id="nutritionChart"></canvas>
+  </div>
+
+  <div class="chart-box">
+    <h3>Pending Recipe Approvals</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Recipe Title</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Devesh</td><td>Multigrain Pakoda</td><td>Pending</td></tr>
+        <tr><td>Parth</td><td>Veg Salad</td><td>Pending</td></tr>
+        <tr><td>Rohit</td><td>Green Smoothie</td><td>Approved</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="chart-box">
+    <h3>Recent Payments</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Amount</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Devesh</td><td>$20</td><td>Successful</td></tr>
+        <tr><td>Eva</td><td>$15</td><td>Failed</td></tr>
+        <tr><td>Surya</td><td>$25</td><td>Pending</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="logout-btn-div"><button id="logoutBtn" onclick="logout()" style="display: none;">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button></div>
+</div>
+
+<script>
+  function toggleMode() {
+    document.body.classList.toggle('dark-mode');
+  }
+
+  new Chart(document.getElementById('userChart'), {
+    type: 'line',
+    data: {
+      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      datasets: [{
+        label: 'New Users',
+        data: [30, 45, 60, 40, 70, 90, 100],
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: '#36a2eb',
+        borderWidth: 2,
+        fill: true,
+        tension: 0.3
+      }]
+    }
+  });
+
+  new Chart(document.getElementById('recipeChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Vegan', 'Keto', 'Low-Carb', 'High-Protein', 'Desserts'],
+      datasets: [{
+        label: 'Recipes',
+        data: [50, 30, 20, 40, 60],
+        backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#4bc0c0']
+      }]
+    }
+  });
+
+  new Chart(document.getElementById('paymentChart'), {
+    type: 'line',
+    data: {
+      labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+      datasets: [{
+        label: 'Payments ($)',
+        data: [1200, 1900, 2500, 3100],
+        borderColor: '#4bc0c0',
+        borderWidth: 2,
+        fill: false,
+        tension: 0.3
+      }]
+    }
+  });
+
+  new Chart(document.getElementById('nutritionChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Active', 'Inactive'],
+      datasets: [{
+        label: 'Nutritionists',
+        data: [12, 5],
+        backgroundColor: ['#36a2eb', '#ff6384'],
+        hoverOffset: 4
+      }]
+    }
+  });
+
+  function logout() {
+      document.getElementById("recipesPage").style.display = "none";
+      document.getElementById("feedbackFormSection").style.display = "none";
+      document.getElementById("logoutBtn").style.display = "none";
+      document.getElementById("authPage").style.display = "block";
+      alert("Logged out successfully.");
+  }
+
+  document.title = "Smart Food Portal Admin Dashboard";
+</script>
+</body>
+</html>

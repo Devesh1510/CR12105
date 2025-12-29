@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="site.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="1"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="2040"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="recipe" custom_title="0" dock_id="1" table="4,6:mainrecipe"/><dock_state state="000000ff00000000fd00000001000000020000043c000002befc0100000001fb000000160064006f0063006b00420072006f007700730065003101000000000000043c0000011800ffffff000002580000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="recipe" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="29"/><column index="2" value="82"/><column index="3" value="111"/><column index="4" value="71"/><column index="5" value="74"/><column index="6" value="73"/><column index="7" value="102"/><column index="8" value="67"/><column index="9" value="57"/><column index="10" value="278"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="user" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="29"/><column index="2" value="70"/><column index="3" value="140"/><column index="4" value="300"/><column index="5" value="102"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1*">-- Recipe 1: Veg Biryani
+INSERT INTO recipe (name, description, ingredients, instructions, precautions, health_condition, meal_type, difficulty, image_url)
+VALUES (
+    'Veg Biryani',
+    'A fragrant and spicy rice dish made with vegetables, aromatic spices, and herbs. Served with Raita',
+    'Rice, Mixed Vegetables, Spices, Herbs, Yogurt',
+    'Step 1: Steam cook the rice for 15-20 minutes. | Step 2: Fry the vegetables with spices. | Step 3: Add rice to the cooked vegetables. | Step 4: Let the flavors blend together. Serve with Yogurt.',
+    'People with Acidity should avoid eating Biryani',
+    'Diabetes',
+    'lunch',
+    'Intermediate',
+    '/static/img/biryani.PNG'
+);
+
+-- Recipe 2: Chocolate Cake
+INSERT INTO recipe (name, description, ingredients, instructions, precautions, health_condition, meal_type, difficulty, image_url)
+VALUES (
+    'Chocolate Cake',
+    'A delicious, moist chocolate cake made with cocoa powder and dark chocolate, topped with cream ad cherry.',
+    'Cocoa powder, Flour, Eggs (optional), Butter, Chocolate',
+    'Step 1: Preheat the oven to 350°F (175°C). | Step 2: Mix all dry ingredients and wet ingredients separately. | Step 3: Combine the wet and dry ingredients. | Step 4: Pour the batter into a greased pan and bake for 30 minutes. | Step 5: Cool the cake. Add a layer of cream and top it with cherry.',
+    'People with diabetes should eat only 250 calories of cake',
+    'Migraine',
+    'dessert',
+    'Beginner',
+    '/static/img/cake.PNG'
+);
+
+-- Recipe 3: Dosa
+-- Note: 'healthCondition' is used here, matching the Python model.
+INSERT INTO recipe (name, description, ingredients, instructions, precautions, health_condition, meal_type, difficulty, image_url)
+VALUES (
+    'Dosa',
+    'A crispy and savory South Indian pancake made from fermented rice and lentil batter. Often served with Sambhar and chutneys.',
+    'Rice, Urad Dal (Black Gram), Toor Dal, Fenugreek, Salt',
+    'Step 1: Soak rice and urad dal separately for 6-8 hours. | Step 2: Grind the soaked ingredients to a smooth batter. | Step 3: Let the batter ferment for 8-12 hours. | Step 4: Heat a pan and pour the batter over it, spreading the batter thin. | Step 5: Cook until crispy and serve with Sambhar and chutneys.',
+    NULL, -- No caution provided in the JSON, inserting NULL
+    'Migraine',
+    'breakfast',
+    'Expert',
+    '/static/img/dosa.PNG'
+);
+
+-- Recipe 4: Gulab Jamun
+INSERT INTO recipe (name, description, ingredients, instructions, precautions, health_condition, meal_type, difficulty, image_url)
+VALUES (
+    'Gulab Jamun',
+    'Soft, round, and golden-brown Indian sweets soaked in aromatic sugar syrup.',
+    'Milk powder, Flour, Baking soda, Ghee, Sugar, Cardamom, Rosewater',
+    'Step 1: Mix milk powder, flour, and baking soda to make dough. | Step 2: Make small balls.Fry the balls until golden brown. | Step 3: Prepare sugar syrup with sugar, Rosewater, and cardamom, then soak the fried balls.',
+    'People with diabetes should avoid this',
+    'Migraine',
+    'dessert',
+    'Intermediate',
+    '/static/img/jamun.PNG'
+);
+
+-- Recipe 5: Multigrain Pakoda
+INSERT INTO recipe (name, description, ingredients, instructions, precautions, health_condition, meal_type, difficulty, image_url)
+VALUES (
+    'Multigrain Pakoda',
+    'Crunchy , healthy and golden Indian spicy savory.',
+    'Water, Multigrain Flour, Spices (Powdered), Oil, Salt',
+    'Step 1: Mix the flour , water and Spices with salt to make a thick paste. | Step 2: Make small balls.Fry the balls until golden brown. | Step 3: Serve hot with pudina and tamarind chutneys.',
+    'People with High BP and allergic to Chickpeas must avoid eating this.',
+    'Diabetes',
+    'snacks',
+    'Intermediate',
+    '/static/img/pakodas.jpg'
+);
+
+-- Recipe 6: Palak Paneer
+INSERT INTO recipe (name, description, ingredients, instructions, precautions, health_condition, meal_type, difficulty, image_url)
+VALUES (
+    'Palak Paneer',
+    'A rich and creamy curry made with spinach and paneer.',
+    'Spinach, Paneer, Cream, Spices',
+    'Step 1: Cook spinach gravy with spices. | Step 2: Add paneer and cook until soft. Serve with roti/Chapati',
+    'People with milk and spinach allergy should refrain from eating this',
+    'Hypertension',
+    'lunch',
+    'Intermediate',
+    '/static/img/palak.PNG'
+);</sql><current_tab id="0"/></tab_sql></sqlb_project>

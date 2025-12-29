@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Smart Food Portal</title>
+    <link rel="stylesheet" href="/static/st.css">
+</head>
+<body>
+
+    <!-- Contact Us Page Section -->
+    <div class="contact-us-container">
+        <header>
+            <h1>Get in Touch with us</h1>
+            <p>We’re here to assist you with all your food needs! Reach out to us, and we’ll get back to you as soon as possible.</p>
+        </header>
+
+        <!-- Contact Form Section -->
+        <div class="contact-form">
+            <form action="submit-form" method="POST">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Mobile number</label>
+                    <input type="phone" id="phone" name="phone" placeholder="Enter your Mobile Number" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject" name="subject">
+                        <option value="general">General Inquiry</option>
+                        <option value="order">Order Issue</option>
+                        <option value="feedback">Feedback</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Your message" rows="5" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-button">Send Message</button>
+            </form>
+        </div>
+
+        <!-- Contact Info Section -->
+        <div class="contact-info">
+            <div>
+                <h2>Quick Contact Info</h2>
+                <img src="/static/img/call.png" alt="Call Logo" style="height: 30px;width: 30px;margin-top: 20px;margin-bottom: 0; margin-left: 70px; display: inline-block;">
+                <p><strong>Phone:</strong> <a href="tel:+919137047230">+91 9137047230</a></p>
+            </div>
+            <div>
+                <img src="/static/img/email.png" alt="Email Logo" style="height: 30px;width: 30px;margin-top: 20px;margin-bottom: 0; margin-left: 130px; display: inline-block;">
+                <p><strong>Email:</strong> <a href="mailto:devesh.dabhade@aissmsioit.org">devesh.dabhade@aissmsioit.org</a></p>
+            </div>
+            <div>
+                <img src="/static/img/time.png" alt="Call Logo" style="height: 30px;width: 30px;margin-top: 20px;margin-bottom: 0;margin-left: 150px;display: inline-block;">
+                <p><strong>Business Hours:</strong> Mon - Sat, 9:00 AM - 8:00 PM</p>
+            </div>
+        </div>
+
+        <!-- Social Media Links Section -->
+        <div class="social-links">
+            <p>Follow Us:</p>
+            <img src="/static/img/facebook.png" alt="Facebook Logo" style="height: 30px;width: 30px;">
+            <a href="https://facebook.com" target="_blank" class="social-icon">Facebook</a>
+            <img src="/static/img/twitter.png" alt="Twitter Logo" style="height: 30px;width: 30px;">
+            <a href="https://twitter.com" target="_blank" class="social-icon">Twitter</a>
+            <img src="/static/img/instagram.png" alt="Instagram Logo" style="height: 30px;width: 30px;">
+            <a href="https://instagram.com" target="_blank" class="social-icon">Instagram</a>
+        </div>
+
+        <!-- Footer Section -->
+        <footer>
+            <p>&copy; 2025 Smart Food Portal | <a href="/templates/privacy.html">Privacy Policy</a> | <a href="/templates/tos.html">Terms of Service</a></p>
+        </footer>
+    </div>
+
+</body>
+</html>
